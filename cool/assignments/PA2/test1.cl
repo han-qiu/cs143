@@ -1,0 +1,2 @@
+--COMMENT_DASH with any character and NEWLINE sdjfl\[];'./',.--
+--COMMENT_DASH with EOF
