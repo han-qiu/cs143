@@ -65,6 +65,7 @@ char convert(char c)
  * Define names for regular expressions here.
  */
 
+NULL            \0
 
 CLASS           ?i:class
 ELSE            ?i:else
@@ -160,6 +161,11 @@ ASSIGN          <-
 <INITIAL>\"             {
                           string_buf_ptr = string_buf;
                           BEGIN(STRING);
+                        }
+<STRING>{NULL}          {
+                          cool_yylval.error_msg = "String contains null character."; 
+                          BEGIN(STRERROR);
+                          return(ERROR);
                         }
 <STRING>\"              {
                           BEGIN(INITIAL);

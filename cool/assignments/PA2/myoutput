@@ -363,3 +363,5 @@
 #25 ERROR "EOF in string constant"
 #name "test4.cl"
 #2 ERROR "EOF in string constant"
+#name "test5.cl"
+#1 ERROR "String contains null character."
