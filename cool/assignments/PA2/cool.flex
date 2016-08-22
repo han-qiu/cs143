@@ -84,7 +84,7 @@ ESAC            ?i:esac
 NEW             ?i:new
 OF              ?i:of
 NOT             ?i:not
-TRUE            i(?i:rue)
+TRUE            t(?i:rue)
 FALSE           f(?i:alse)
 
 
@@ -122,9 +122,7 @@ ASSIGN          <-
                           BEGIN(COMMENT);
                           commentDepth = 1;
                         }
-<COMMENT>"(*"           {
-                          ++commentDepth;
-                        }
+<COMMENT>"(*"           ++commentDepth;
 <COMMENT>"*)"           {
                           --commentDepth;
                           if(commentDepth==0)

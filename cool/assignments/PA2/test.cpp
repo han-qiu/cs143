@@ -3,13 +3,16 @@
 using namespace std;
 int main()
 {
-	const char* fileName = "test5.cl";
+	//test some character
+	const char* fileName = "test.cl";
 	ofstream fout;
 	fout.open(fileName);
 	fout << "\"";
 	for(int i=0;i<256*2;++i)
-		fout << (char)0;
+		fout << (char)i;
 	fout << "\"";
+	for(int i=0;i<256*2;++i)
+		fout << (char)i;
 	fout.close();
 	return 0;
 }

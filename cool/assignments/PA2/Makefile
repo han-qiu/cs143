@@ -4,7 +4,7 @@ CLASS= cs143
 CLASSDIR= /usr/class/cs143/cool
 LIB= -lfl
 
-SRC= cool.flex test*.cl README 
+SRC= cool.flex test?.cl README 
 CSRC= lextest.cc utilities.cc stringtab.cc handle_flags.cc
 TSRC= mycoolc
 HSRC= 
@@ -44,7 +44,13 @@ lexer: ${OBJS}
 cool-lex.cc: cool.flex 
 	${FLEX} cool.flex
 
-dotest:	lexer test.cl
+test: test.cpp
+	${CC} $< -o $@
+
+test.cl: test
+	./test
+
+dotest:	lexer test*.cl
 	./lexer test*.cl > myoutput
 	${CLASSDIR}/../lib/.i686/lexer test*.cl > output
 	diff myoutput output > result
@@ -71,7 +77,7 @@ submit-clean: ${OUTPUT}
 	-rm -f *.s core ${OBJS} lexer cool-lex.cc *~ parser cgen semant
 
 clean :
-	-rm -f ${OUTPUT} *.s core ${OBJS} lexer cool-lex.cc *~ parser cgen semant
+	-rm -f ${OUTPUT} *.s core ${OBJS} lexer cool-lex.cc *~ parser cgen semant *.d
 
 clean-compile:
 	@-rm -f core ${OBJS} cool-lex.cc ${LSRC}
@@ -80,5 +86,3 @@ clean-compile:
 	${SHELL} -ec '${DEPEND} $< | sed '\''s/\($*\.o\)[ :]*/\1 $@ : /g'\'' > $@'
 
 -include ${CFIL:.cc=.d}
-
-
